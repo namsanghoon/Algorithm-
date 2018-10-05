@@ -8,12 +8,12 @@ import java.io.IOException;
 public class Test {
 	static MergeSort ms = new MergeSort();
 	static QuickSort qs = new QuickSort();
-	static int array[] = new int[1000];
+	static int array[] = new int[8];
 	static int count =0;
 	public static void main(String args[]){
 		//텍스트 파일 읽어오기
 		try {
-			File file = new File("C://test_1000.txt");
+			File file = new File("C://test_8.txt");
 			FileReader filereader = new FileReader(file);
 			BufferedReader bufReader = new BufferedReader(filereader);
 			String line = "";
@@ -27,14 +27,17 @@ public class Test {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		for(int i=0;i<array.length;i++) {
+		/*for(int i=0;i<array.length;i++) {
 			System.out.print(array[i]+ " ");
-		}
-		System.out.println("");
-		long start = System.currentTimeMillis();
+		}*/
+		ms.partition(array, 2);
+		ms.sort(array, 0, array.length-1);
+		/*ms.MergeAftersort(array, 0, array.length-1);*/
+		/*long start = System.currentTimeMillis();
 		qs.quickSortRandom(array, 0, array.length-1);
 		long end = System.currentTimeMillis();
-		System.out.println("Time : " + (end - start)/1000.0 + "ms");
+		System.out.println("Time : " + (end - start)/1000.0 + "ms");*/
+		
 		for(int i=0;i<array.length;i++) {
 			System.out.print(array[i]+ " ");
 		}
