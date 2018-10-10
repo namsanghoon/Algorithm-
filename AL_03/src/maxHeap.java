@@ -1,32 +1,29 @@
 
-public class minHeap {
-	
-	
-	// heapify메소드
+public class maxHeap {
 	public void heapify(int[] arr, int n, int i) { 
-		int minValue = i;
+		int MaxValue = i;
 		int leftChild = 2*i+1;
 		int rightChild = 2*i+2;
 		
-		if(leftChild<n && arr[leftChild]<arr[minValue])
-			minValue = leftChild;
+		if(leftChild<n && arr[leftChild]>arr[MaxValue])
+			MaxValue = leftChild;
 		
-		if(rightChild<n && arr[rightChild]<arr[minValue])
-			minValue = rightChild;
+		if(rightChild<n && arr[rightChild]>arr[MaxValue])
+			MaxValue = rightChild;
 		
-		if(minValue != i) {
-			swap(arr,i,minValue);
-			heapify(arr,n,minValue);
+		if(MaxValue != i) {
+			swap(arr,i,MaxValue);
+			heapify(arr,n,MaxValue);
 		}
 		}
 	//build-heap 메소드
-	public void build_min_heap(int[] arr, int n) {
+	public void build_max_heap(int[] arr, int n) {
 		for (int i = n / 2 - 1; i >= 0; i--)
 			heapify(arr, n, i);
 	}
 	// minheap sort메소드
-	public void MinHeapSort(int arr[], int n) {
-		build_min_heap(arr,n);
+	public void MaxHeapSort(int arr[], int n) {
+		build_max_heap(arr,n);
 		for(int i=n-1;i>=0;i--) {
 			
 			swap(arr,0,i);
