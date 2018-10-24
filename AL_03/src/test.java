@@ -26,29 +26,28 @@ public class test {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		/*//MinHeap
-		minHeap m = new minHeap();
-		m.MinHeapSort(array, n);*/
-		
-		/*//MaxHeap
+		//MinHeap
+		/*minHeap m = new minHeap();
+		m.MinHeapSort(array, n);
+		m.print(array, n);*/
+		//MaxHeap
 		maxHeap x = new maxHeap();
 		x.MaxHeapSort(array, n);
 		System.out.println("");
-		x.print(array, n);*/
+		x.print(array, n);
 
-		//CountSort
+		/*//CountSort
 		System.out.println("Before : ");
 		for(int i=0;i<array.length-1;i++) {
-			System.out.println(array[i]);
+			System.out.print(array[i] + " ");
 		}
 		System.out.println();
 		CountingSort quickSort = new CountingSort();
 		int max = quickSort.findMaxNumber(array);
-		System.out.println(max);
 		array = quickSort.sort(array, max);
 		System.out.println("After : ");
 		System.out.println(Arrays.toString(array));
-		System.out.println();
+		System.out.println();*/
 
 		// TODO Auto-generated method stub
 
