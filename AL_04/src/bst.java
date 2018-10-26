@@ -1,14 +1,16 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class bst {
 	Node root;
-
-	class Node {
+	int successor, predecessor;
+	class Node
+	{
 		int key;
-		Node left, right;
+		Node left = null, right = null;
 
-		public Node(int item) {
-			key = item;
-			left = right = null;
+		Node(int key) {
+			this.key = key;
 		}
 	}
 
@@ -16,6 +18,24 @@ public class bst {
 	void BinarySearchTree() {  
         root = null;  
     }
+	public void median_insert(int[] arr) {
+		Arrays.sort(arr);
+		int x=arr.length;
+		
+		while(x !=0) {
+			int median = x /2;
+			insert(arr[median]);
+			for(int i=median; i<x-1; i++){
+	            arr[i] = arr[i+1];
+	        }
+			x=x-1;
+		}
+		
+		
+
+		
+		
+	}
 
 	// This method mainly calls insertRec()
 	public void insert(int key) {
@@ -55,27 +75,29 @@ public class bst {
 		}
 	}
 
-	public Node Recursive_search(Node root, int key) {
+	public boolean Recursive_search(Node root, int key) {
 		// Base Cases: root is null or key is present at root
-		if (root == null || key == root.key)
-			return root;
-
+		if (root == null)
+			return false;
+		if(key == root.key)
+			return true;
 		// val is greater than root's key
 		if (root.key > key)
 			return Recursive_search(root.left, key);
-
-		// val is less than root's key
+			
 		return Recursive_search(root.right, key);
 	}
 
-	public Node Iterative_serarch(Node root, int key) {
+	public boolean Iterative_serarch(Node root, int key) {
 		while (root != null && key != root.key) {
 			if (key < root.key)
 				root = root.left;
 			else
 				root = root.right;
 		}
-		return root;
+		if(root==null)
+			return false;
+		return true;
 	}
 
 	public void deleteKey(int key) {
@@ -105,7 +127,8 @@ public class bst {
 
 			// node with two children: Get the inorder successor (smallest
 			// in the right subtree)
-			root.key = minValue(root.right);
+			Node x = minValue(root.right);
+			root.key = x.key;
 
 			// Delete the inorder successor
 			root.right = deleteRec(root.right, root.key);
@@ -113,13 +136,64 @@ public class bst {
 
 		return root;
 	}
+	
+	public void successor(Node root, int key) {
+		if (root != null) {
+			if (root.key == key) {
+				// go to the right most element in the left subtree, it will the
+				// predecessor.
 
-	public int minValue(Node root) {
-		int minv = root.key;
-		while (root.left != null) {
-			minv = root.left.key;
+				if (root.right != null) {
+					// go to the left most element in the right subtree, it will
+					// the successor.
+					Node t = root.right;
+					while (t.left != null) {
+						t = t.left;
+					}
+					successor = t.key;
+				}
+			} else if (root.key > key) {
+				// we make the root as successor because we might have a
+				// situation when value matches with the root, it wont have
+				// right subtree to find the successor, in that case we need
+				// parent to be the successor
+				successor = root.key;
+				successor(root.left, key);
+			} 
+		}
+		System.out.println("Inorder Successor of"+ key+" is : " + successor);
+	}
+	public void Predecessor(Node root, int key) {
+		if (root != null) {
+			if (root.key == key) {
+				// go to the right most element in the left subtree, it will the
+				// predecessor.
+				if (root.left != null) {
+					Node t = root.left;
+					while (t.right != null) {
+						t = t.right;
+					}
+					predecessor = t.key;
+				}
+
+			}  
+			else if (root.key < key) {
+				// we make the root as predecessor because we might have a
+				// situation when value matches with the root, it wont have
+				// right subtree to find the predecessor, in that case we need
+				// parent to be the predecessor.
+				predecessor = root.key;
+				Predecessor(root.right, key);
+			}
+		}
+		System.out.println("Inorder predecessor of"+ key+" is : " + predecessor);
+		
+	}
+
+	public Node minValue(Node root) {
+		while(root.left!=null) {
 			root = root.left;
 		}
-		return minv;
+		return root;
 	}
 }
