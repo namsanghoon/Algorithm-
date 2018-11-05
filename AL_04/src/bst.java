@@ -8,14 +8,13 @@ import java.lang.reflect.Array;
 import java.io.FileWriter;
 import java.util.Arrays;
 
-public class bst{
+public class bst {
 	Node root;
-	/*File a = new File("e.txt");
-	FileWriter b = new FileWriter(a);*/
+
 	int successor, predecessor;
-	int [] data = new int[10];
-	int count=0;
-	
+	int[] data = new int[20];
+	int count = 0;
+
 	class Node {
 		int key;
 		Node left = null, right = null;
@@ -45,57 +44,49 @@ public class bst{
 
 	}
 
-	// This method mainly calls insertRec()
 	public void insert(int key) {
 		root = insertRec(root, key);
 	}
 
-	/* A recursive function to insert a new key in BST */
 	public Node insertRec(Node root, int key) {
 
-		/* If the tree is empty, return a new node */
 		if (root == null) {
 			root = new Node(key);
 			return root;
 		}
 
-		/* Otherwise, recur down the tree */
 		if (key < root.key)
 			root.left = insertRec(root.left, key);
 		else if (key > root.key)
 			root.right = insertRec(root.right, key);
 
-		/* return the (unchanged) node pointer */
 		return root;
 	}
 
-	// This method mainly calls InorderRec()
-	public void inorder()  {
+	public void inorder() {
 		inorderRec(root);
 	}
 
-	// A utility function to do inorder traversal of BST
-	public void inorderRec(Node root)  {
-		
+	public void inorderRec(Node root) {
+
 		if (root != null) {
 			inorderRec(root.left);
-			
+
 			System.out.println(root.key);
-			data[count] = root.key;
-			count++;
-			inorderRec(root.right);
 			
+			inorderRec(root.right);
+
 		}
-		
+
 	}
 
 	public boolean Recursive_search(Node root, int key) {
-		// Base Cases: root is null or key is present at root
+
 		if (root == null)
 			return false;
 		if (key == root.key)
 			return true;
-		// val is greater than root's key
+
 		if (root.key > key)
 			return Recursive_search(root.left, key);
 
@@ -104,12 +95,16 @@ public class bst{
 
 	public boolean Iterative_serarch(Node root, int key) {
 		while (root != null && key != root.key) {
-			if (key < root.key)
+			if (key < root.key) {
+				System.out.println(root.key);
 				root = root.left;
-			else
+			}
+			else {
+				System.out.println(root.key);
 				root = root.right;
+			}
 		}
-		
+
 		if (root == null)
 			return false;
 		return true;
@@ -121,31 +116,25 @@ public class bst{
 
 	/* A recursive function to insert a new key in BST */
 	public Node deleteRec(Node root, int key) {
-		/* Base Case: If the tree is empty */
+
 		if (root == null)
 			return root;
 
-		/* Otherwise, recur down the tree */
 		if (key < root.key)
 			root.left = deleteRec(root.left, key);
 		else if (key > root.key)
 			root.right = deleteRec(root.right, key);
 
-		// if key is same as root's key, then This is the node
-		// to be deleted
 		else {
-			// node with only one child or no child
+
 			if (root.left == null)
 				return root.right;
 			else if (root.right == null)
 				return root.left;
 
-			// node with two children: Get the inorder successor (smallest
-			// in the right subtree)
 			Node x = minValue(root.right);
 			root.key = x.key;
 
-			// Delete the inorder successor
 			root.right = deleteRec(root.right, root.key);
 		}
 
@@ -155,23 +144,18 @@ public class bst{
 	public void successor(Node root, int key) {
 		if (root != null) {
 			if (root.key == key) {
-				// go to the right most element in the left subtree, it will the
-				// predecessor.
+				
 
 				if (root.right != null) {
-					// go to the left most element in the right subtree, it will
-					// the successor.
-					Node t = root.right;
-					while (t.left != null) {
-						t = t.left;
+					
+					Node temp = root.right;
+					while (temp.left != null) {
+						temp = temp.left;
 					}
-					successor = t.key;
+					successor = temp.key;
 				}
 			} else if (root.key > key) {
-				// we make the root as successor because we might have a
-				// situation when value matches with the root, it wont have
-				// right subtree to find the successor, in that case we need
-				// parent to be the successor
+				
 				successor = root.key;
 				successor(root.left, key);
 			}
@@ -185,11 +169,11 @@ public class bst{
 				// go to the right most element in the left subtree, it will the
 				// predecessor.
 				if (root.left != null) {
-					Node t = root.left;
-					while (t.right != null) {
-						t = t.right;
+					Node temp = root.left;
+					while (temp.right != null) {
+						temp = temp.right;
 					}
-					predecessor = t.key;
+					predecessor = temp.key;
 				}
 
 			} else if (root.key < key) {
@@ -211,19 +195,20 @@ public class bst{
 		}
 		return root;
 	}
+
 	public void wirteFile() {
-		String fileName ="Inorder_output.txt";
+		String fileName = "Inorder_output.txt";
 		try {
-			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
-			for(int i=0;i<data.length;i++) {
+			BufferedWriter fw = new BufferedWriter(new FileWriter(fileName, true));
+			for (int i = 0; i < data.length; i++) {
 				fw.write(Integer.toString(data[i]));
 				fw.newLine();
 				fw.flush();
 			}
 			fw.close();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }

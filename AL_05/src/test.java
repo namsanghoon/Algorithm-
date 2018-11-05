@@ -1,16 +1,11 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-
-import com.sun.corba.se.impl.orbutil.graph.Node;
 
 public class test {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int array[] = new int[24];
 		int count = 0;
@@ -30,19 +25,13 @@ public class test {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		bst tree = new bst(); //객체생성
-		for(int i=0;i<array.length;i++) {//삽입
-			tree.insert(array[i]);
-		}
+		RBTree tree = new RBTree();
+		tree.add(array);
+		tree.searchNode(45);
 		
-		long start = System.currentTimeMillis();
-		tree.Iterative_serarch(tree.root, 45);
-		long end = System.currentTimeMillis();
 		
-		System.out.println("Time : " + (end - start)/1000.0 + "ms");//시간출력
 		
-		//tree.inorder();//중위순회
-		//tree.wirteFile(); //파일출력
+		
 	}
 
 }
