@@ -73,7 +73,7 @@ public class bst {
 			inorderRec(root.left);
 
 			System.out.println(root.key);
-			
+
 			inorderRec(root.right);
 
 		}
@@ -98,8 +98,7 @@ public class bst {
 			if (key < root.key) {
 				System.out.println(root.key);
 				root = root.left;
-			}
-			else {
+			} else {
 				System.out.println(root.key);
 				root = root.right;
 			}
@@ -144,10 +143,9 @@ public class bst {
 	public void successor(Node root, int key) {
 		if (root != null) {
 			if (root.key == key) {
-				
 
 				if (root.right != null) {
-					
+
 					Node temp = root.right;
 					while (temp.left != null) {
 						temp = temp.left;
@@ -155,7 +153,7 @@ public class bst {
 					successor = temp.key;
 				}
 			} else if (root.key > key) {
-				
+
 				successor = root.key;
 				successor(root.left, key);
 			}

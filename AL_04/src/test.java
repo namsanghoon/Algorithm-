@@ -30,19 +30,19 @@ public class test {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-		bst tree = new bst(); //객체생성
-		for(int i=0;i<array.length;i++) {//삽입
+		bst tree = new bst(); // 객체생성
+		for (int i = 0; i < array.length; i++) {// 삽입
 			tree.insert(array[i]);
 		}
-		
+
 		long start = System.currentTimeMillis();
 		tree.Iterative_serarch(tree.root, 45);
 		long end = System.currentTimeMillis();
-		
-		System.out.println("Time : " + (end - start)/1000.0 + "ms");//시간출력
-		
-		//tree.inorder();//중위순회
-		//tree.wirteFile(); //파일출력
+
+		System.out.println("Time : " + (end - start) / 1000.0 + "ms");// 시간출력
+
+		// tree.inorder();//중위순회
+		// tree.wirteFile(); //파일출력
 	}
 
 }
