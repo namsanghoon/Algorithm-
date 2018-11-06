@@ -32,7 +32,7 @@ public class minHeap {
 			heapify(arr, i, 0);
 		}
 	}
-	
+
 	// swap ¸Þ¼Òµå
 	public void swap(int[] a, int i, int j) {
 		// TODO Auto-generated method stub
@@ -44,7 +44,7 @@ public class minHeap {
 	public void print(int arr[], int n) {
 		for (int i = 0; i < n; ++i)
 			System.out.print(arr[i] + " ");
-		System.out.println();
+		System.out.println("");
 	}
 
 }
