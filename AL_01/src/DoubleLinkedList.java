@@ -9,7 +9,6 @@ public class DoubleLinkedList {
 		tail = new Node(null);
 		size = 0;
 	}
-
 	// 삽입 메소드
 	public void add(Object object) {
 		Node newNode = new Node(object);
@@ -22,7 +21,6 @@ public class DoubleLinkedList {
 		head.next = newNode;
 		size++;
 	}
-
 	// 삭제메소드
 	public void delete(int x) {
 		int i = 0;
@@ -44,14 +42,14 @@ public class DoubleLinkedList {
 		}
 
 		if (count == 0) { // 삭제할 노드가 리스트에 없을 때
-			System.out.println("Delete  " + x + "   " + x + " is not in the list");
+			System.out.println("Delete " + x + "   " + x + " is not in the list");
 		}
 
 		if (count == 1) {// 삭제할 노드가 리스트에 있을 때
 			if (size == 0) {// 비어있을 경우
-				System.out.println("Delete  " + x + " | HEAD --> ");
+				System.out.println("Delete " + x + " | HEAD --> ");
 			} else {
-				System.out.print("Delete  " + x + " | HEAD --> ");
+				System.out.print("Delete " + x + " | HEAD --> ");
 
 			}
 		}
@@ -152,6 +150,6 @@ public class DoubleLinkedList {
 			System.out.print(" <-> " + p.next.object);
 			p = p.next;
 		}
-		System.out.println();
+		System.out.println("");
 	}
 }
